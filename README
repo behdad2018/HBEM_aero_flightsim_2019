@@ -1,0 +1,18 @@
+If you are interested only in the HBEL model, the codes to dounlowds are:
+#########################################################################################################################
+"try11.m"
+"hbem_model.m"
+
+"hbem_model.m" takes in the relative velocity vector of the vehicle ([10,0,-10]) in m/s, and required thrust
+in Newtons i.e., "hbem_model(6,[10,0,-10])". The model provides mutiple outputs including the rotor RPM. Also
+it is noted that the rotor geometry is defined inside the function "hbem_model.m".
+
+If you are intersted in performing flight simulation using HBEM model:
+#########################################################################################################################
+You should dowload all of the codes in your working directory. The simulink flight simulation model
+is "M_6DoF_BS_Full_backup_11_25_2018.slx" and the simulation can be managed/initialized using 
+"Main_run.m" including the geometry/characterstics of quad-copter.
+
+More question, fee free to ask! you can directly email Behdad Davoudi, davoudi@umich.edu
+
+
