@@ -94,7 +94,7 @@ while er1>0.00001
     
     f= lamb0 -  lamb_tot - 0.5 *  ct * (mu^2 + lamb0 ^2) ^ (-0.5) ;
     
-    fp = 1 + 0.5 * ct * (mu^2 + lamb0 ^2) ^ (-1.5) ;
+    fp = 1 + 0.5 * ct * (mu^2 + lamb0 ^2) ^ (-1.5) * lamb0;
     
     lambnew = lamb0 - f/fp;
     
