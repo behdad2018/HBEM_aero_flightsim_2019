@@ -68,7 +68,7 @@ psi=geometry2(14,:);
 sig=nb*mean(c)/(pi*R);        % blade solidity
 %%
 
-Vx=V_rel_B(1);Vy=V_rel_B(2);Vz=-V_rel_B(3);
+Vx=V_rel_B(1);Vy=V_rel_B(2);Vz=V_rel_B(3);
 Vinf=[Vx,Vy,Vz];                          % relative incoming velocity
 
 om=rpm*2*pi/60;                            % rad per second
@@ -152,10 +152,14 @@ x = atan (mux/(lamb));
 kx = (15*pi/23)*tan(x/2); 
 ky = 0;
 
+%% fixing psi given a Vy velcoity, psi is defined when x is alinged with free stream
+
+psi_new=psi-atan(-Vy/Vx);
+
 % constructing inflow ratio based on a linear model
 % lambda is a matrix, rows r, and columns azimuth, (nr * npsi)
 
-lam = lamb * (1 + kx * r' * cos(psi) + ky * r' * sin(psi));
+lam = lamb * (1 + kx * r' * cos(psi_new) + ky * r' * sin(psi_new));
 
 %% intergration to find roll and pitch for a rotor
 
@@ -163,7 +167,7 @@ beta=0 ;
 beta_dot=0 ;
 
 r2=repmat(r',1,npsi);        % nr*npsi
-psi2=repmat(psi,nr,1);       % nr*npsi
+psi2=repmat(psi_new,nr,1);       % nr*npsi
 
 % the incoming velocity seen by the blade
 % for a quad-copter (no flpapping)
