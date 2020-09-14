@@ -213,7 +213,7 @@ aoaeff=(th2 - phi)*180/pi;
 % intergral int_0^{2pi} cl * 1/2 * rho * U^2 * c2 / (2pi)
 % l = nb * trapz(psi, cl * 0.5 .* rho .* (vt*u).^2 .*c2 , 2) / (2*pi);
 
-l = nb * trapz(psi, cl * 0.5 .* rho .* (vt*u).^2 .*c2.*cos(atan(up./ut)) , 2) / (2*pi);
+l = nb * trapz(psi_new, cl * 0.5 .* rho .* (vt*u).^2 .*c2.*cos(atan(up./ut)) , 2) / (2*pi);
 
 %ct = l ./ (rho * 2 * pi * r' .* dr2(:,1) .* (r'*R*om).^2 * R^2) ;
 
@@ -235,10 +235,10 @@ y=r2.*sin(psi2)*R;
 
 %note, I already cancel out Vt
 cmroll = trapz(r*R,...
-    nb/(2*pi)*trapz(psi,-y.*cl*0.5*rho.*u.^2.*c2.*cos(atan(up./ut)),2))/(rho*pi*R^3);
+    nb/(2*pi)*trapz(psi_new,-y.*cl*0.5*rho.*u.^2.*c2.*cos(atan(up./ut)),2))/(rho*pi*R^3);
 
 cmpitch = trapz(r*R,...
-    nb/(2*pi)*trapz(psi,x.*cl*0.5*rho.*u.^2.*c2.*cos(atan(up./ut)),2))/(rho*pi*R^3);
+    nb/(2*pi)*trapz(psi_new,x.*cl*0.5*rho.*u.^2.*c2.*cos(atan(up./ut)),2))/(rho*pi*R^3);
 
 %cl(10,:)*0.5*rho.*u(6,:).^2.*c2(10,:)
 
@@ -267,13 +267,13 @@ cmyaw=sig * Cd0 * 0.125 * (1 + 4.6* mu^2) + ...
 
 
 Re=u.*c2/(1.534e-5)*vt;
-% cmroll= (trapz(psi(1:end/2),r2(:,[1:end/2]).*cl(:,[1:end/2])*0.5*rho.*u(:,[1:end/2]).^2.*c2(:,[1:end/2]),2) -...
-%               trapz(psi(end/2+1:end),r2(:,[end/2+1:end]).*cl(:,[end/2+1:end])*0.5*rho.*u(:,[end/2+1:end]).^2.*c2(:,[end/2+1:end]),2)) / (rho*pi*R^3*vt*2);
+% cmroll= (trapz(psi_new(1:end/2),r2(:,[1:end/2]).*cl(:,[1:end/2])*0.5*rho.*u(:,[1:end/2]).^2.*c2(:,[1:end/2]),2) -...
+%               trapz(psi_new(end/2+1:end),r2(:,[end/2+1:end]).*cl(:,[end/2+1:end])*0.5*rho.*u(:,[end/2+1:end]).^2.*c2(:,[end/2+1:end]),2)) / (rho*pi*R^3*vt*2);
 
 % cmpitch=0;
 %
-% mroll= trapz(r,trapz(psi(1:end/2),r2(:,[1:end/2]).*cl(:,[1:end/2]).*u(:,[1:end/2]).^2,2) -...
-%                 trapz(psi(end/2+1:end),r2(:,[end/2+1:end]).*cl(:,[end/2+1:end]).*u(:,[1:end/2]).^2,2));
+% mroll= trapz(r,trapz(psi_new(1:end/2),r2(:,[1:end/2]).*cl(:,[1:end/2]).*u(:,[1:end/2]).^2,2) -...
+%                 trapz(psi_new(end/2+1:end),r2(:,[end/2+1:end]).*cl(:,[end/2+1:end]).*u(:,[1:end/2]).^2,2));
 
 varargout{1}=er_ct;
 if nargout>1
